@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Button } from '../../common/ui/Button';
+import { Input } from '../../common/ui/Input';
 import { LoginContainer } from './styled';
 
 export const Login = () => {
@@ -31,12 +32,15 @@ export const Login = () => {
 
     return (
         <LoginContainer>
-            <input type="text" value={email} onChange={emailValueHandler} />
-            <input type="text" value={password} onChange={passwordValueHandler} />
-            <input type="checkbox" checked={isRemember} onChange={rememberHandler} />
+            Email
+            <Input type="text" value={email} onChange={emailValueHandler} placeholder='Your email' ></Input>
+            Password 
+            <Input type="text" value={password} onChange={passwordValueHandler} placeholder='Your password' ></Input>
+            <Input type="checkbox" checked={isRemember} onChange={rememberHandler} ></Input>
             Remember me?
 
             <Button title="Sign In" onClick={loginHandler} />
+            Don’t have an account? Sign Up
         </LoginContainer>
     );
 };

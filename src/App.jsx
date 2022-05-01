@@ -5,8 +5,7 @@ import { Button } from './common/ui/Button';
 import { Main } from './views/Main';
 import { Posts } from './views/Posts';
 import { Login } from './views/Login';
-
-
+import { Registration } from './views/Registration';
 
 const App = (props) => {
   //const { _theme } = props;
@@ -27,8 +26,9 @@ const App = (props) => {
         <Button title="Submit" onClick={submitFormHandler} />
         <Button title="Cancel" onClick={cancelFormHandler} />
         
-        {/*<Posts />*/}
-        <Login />
+        <Posts />
+        {/*<Login />*/}
+        {/*<Registration />*/}
 
       </Main>
   );

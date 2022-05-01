@@ -11,7 +11,7 @@ export const Posts = (props) => {
             "text": "Description one",
             "date": "2021-10-06",
             "lesson_num": 123,
-            "title": "Title one",
+            "title": "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
             "author": 7,
         },
         {
@@ -20,7 +20,7 @@ export const Posts = (props) => {
             "text": "Description two",
             "date": "2021-09-12",
             "lesson_num": 123,
-            "title": "Title two",
+            "title": "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
             "author": 7,
         },
         {
@@ -29,7 +29,7 @@ export const Posts = (props) => {
             "text": "Description three",
             "date": "2021-06-02",
             "lesson_num": 123,
-            "title": "Title three",
+            "title": "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
             "author": 7,
         },
     ]

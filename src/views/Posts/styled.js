@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const StyledPostsContainer = styled.div`
     width: 100%;
 
+    display: flex;
+    gap: 32px;
+
     background-color: lightcyan;
 `;
 

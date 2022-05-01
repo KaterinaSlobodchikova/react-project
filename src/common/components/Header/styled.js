@@ -8,6 +8,6 @@ export const StyledHeaderContainer = styled.header`
     width: 100%;
     height: 80px;
 
-    background-color: #fff;
-    
+    background-color: #2231AA;
+    color: #fff;
 `;

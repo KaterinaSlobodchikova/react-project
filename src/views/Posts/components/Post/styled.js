@@ -29,3 +29,11 @@ export const PostTitle = styled.div`
     line-height: 28px;
     color: #313037;
 `;
+
+export const DefaultPreview = styled.img`
+    width: 352px;
+    height: 246px;
+    padding-top: 10px;
+
+    margin-bottom: 24px;
+`;
