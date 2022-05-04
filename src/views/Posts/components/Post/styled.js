@@ -1,39 +1,31 @@
 import styled from 'styled-components';
 
-export const PostCard = styled.div`
-    width: 352px;
+export const PostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    margin-bottom: 40px;
+    width: 100%;
+
+    padding: 40px;
+`;
+
+export const PostText = styled.div`
+	margin: 48px 0;
 `;
 
 export const PostPreview = styled.img`
-    width: 352px;
-    height: 246px;
-    padding-top: 10px;
-
-    margin-bottom: 24px;
+    width: 992px;
+    height: 518px;  
 `;
 
-export const PostDate = styled.div`
-    margin-bottom: 8px;
+export const PostActions = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #8D8E97;
-`;
-
-export const PostTitle = styled.div`
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 28px;
-    color: #313037;
-`;
-
-export const DefaultPreview = styled.img`
-    width: 352px;
-    height: 246px;
-    padding-top: 10px;
-
-    margin-bottom: 24px;
+    .button-container {
+        display: flex;
+        gap: 6px;
+    }
 `;

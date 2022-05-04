@@ -1,14 +1,29 @@
-import { PostCard, PostPreview, PostDate, PostTitle, DefaultPreview } from './styled';
-import defImage from '../../../../images/defaultImg.jpg';
+import { IconBookmark } from '../../../../assets';
+import { LikeButton } from '../../../../common';
+import IconButton from '../../../../common/ui/IconButton';
+import { PostActions, PostContainer, PostPreview, PostText } from './styled';
 
 export const Post = (props) => {
-    const { post } = props;
+    const { title, preview, text, isLiked } = props;
 
     return (
-        <PostCard>
-            {post.image !== undefined ? <PostPreview src={post.image}/> : <DefaultPreview src={defImage} />} 
-            <PostDate>{post.date}</PostDate>
-            <PostTitle>{post.title}</PostTitle>
-        </PostCard>
+        <PostContainer>
+            <h2>{title}</h2>
+            <PostPreview src={preview} alt="post-preview" />
+            <PostText>{text}</PostText>
+
+            <PostActions>
+                <div className='button-container'>
+                    <LikeButton isLiked />
+                    <LikeButton dislike isLiked/>
+                </div>
+
+                <IconButton  
+                    icon={IconBookmark}
+                    title='Add to favorites'
+                    // onClick={}
+                />
+            </PostActions>
+        </PostContainer>
     );
 };

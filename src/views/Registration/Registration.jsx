@@ -34,23 +34,23 @@ export const Registration = () => {
             password,
             confirmPassword,
         }
-        console.log('We signed up with this data:', signUpData);
+        console.log('Registration request was sent with this data:', signUpData);
     }
 
     return (
         <RegistrationContainer>
-            Name
+            <p>Name</p>
             <Input type="text" value={name} onChange={nameValueHandler} placeholder='Your name' ></Input>
-            Email
+            <p>Email</p>
             <Input type="text" value={email} onChange={emailValueHandler} placeholder='Your email' ></Input>
-            Password 
-            <Input type="text" value={password} onChange={passwordValueHandler} placeholder='Your password' ></Input>
-            Confirm password
-            <Input type="text" value={confirmPassword} onChange={confirmPasswordValueHandler} placeholder='Confirm password' ></Input>
+            <p>Password</p> 
+            <Input type="password" value={password} onChange={passwordValueHandler} placeholder='Your password' ></Input>
+            <p>Confirm password</p>
+            <Input type="password" value={confirmPassword} onChange={confirmPasswordValueHandler} placeholder='Confirm password' ></Input>
 
 
             <Button title="Sign Up" onClick={signUpHandler} />
-            Already have an account? Sign In 
+            <p>Already have an account? Sign In</p> 
         </RegistrationContainer>
     );
 };

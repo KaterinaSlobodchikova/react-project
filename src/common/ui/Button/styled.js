@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-    ${(props) => {
-    }};
-
-    //color: ${(props) => props.theme.palette.primary.dark};
+    color: ${(props) => props.theme.palette.system.primary};
     font-size: 20px;
     background: #2231AA;
     border-radius: 2px;
