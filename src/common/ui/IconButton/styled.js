@@ -20,4 +20,3 @@ export const StyledButton = styled.button`
 export const Icon = styled.img`
 	margin-right: 14px;    
 `;
-

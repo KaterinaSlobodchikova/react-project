@@ -1,11 +1,9 @@
-import { StyledUsername } from './styled'
+import React from "react";
+import { StyledUsername } from "./styled";
 
-export const Username = (props) => {
-    const { name } = props;
+export const Username = React.memo((props) => {
+  const { name } = props;
 
-    return (
-        <StyledUsername>
-            Hello, {name}!
-        </StyledUsername>
-    );
-};
+  console.log("username rendered");
+  return <StyledUsername>Hello, {name}!</StyledUsername>;
+});

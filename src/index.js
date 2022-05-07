@@ -13,6 +13,6 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <App />
-    </ThemeProvider>    
-  </React.StrictMode>
+    </ThemeProvider>
+  </React.StrictMode>,
 );
