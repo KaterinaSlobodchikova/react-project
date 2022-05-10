@@ -13,3 +13,24 @@ export const LoginContainer = styled.div`
   border: 1px solid #dadada;
   background-color: #dadada;
 `;
+
+/*
+export const Wrapper = styled.div`
+  width: 500px;
+  margin: 40px;
+  padding: 40px;
+  background-color: aliceblue;
+`;
+*/
+
+export const ForgotPass = styled.div`
+  margin-top: 16px;
+`;
+
+export const HaveAccount = styled.div`
+  margin-top: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: ${({ theme }) => theme.palette.background.gray};
+`;

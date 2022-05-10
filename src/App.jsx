@@ -7,6 +7,8 @@ import { Posts } from "./views/Posts";
 import { Registration } from "./views/Registration";
 import { LoginContainer } from "./views/Login/LoginContainer";
 import Post from "./views/Posts/components/Post";
+import { Footer } from "./common/components/Footer";
+import { ResetPass } from "./views/ResetPass";
 
 const postsFromApi = [
   {
@@ -92,8 +94,11 @@ const App = (props) => {
         text={posts[0].text}
         isLiked={posts[0].isLiked}
       /> */}
+
       <LoginContainer />
-      {/* <Registration /> */}
+      <Registration />
+      <ResetPass />
+      <Footer />
     </Main>
   );
 };

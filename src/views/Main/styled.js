@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledMainContainer = styled.div`
-    width: 100%;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 
-    background-color: lightblue;
-    
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: lightblue;
 `;
