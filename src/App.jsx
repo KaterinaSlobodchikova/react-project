@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { Header } from "./common/components/Header";
 import { Button } from "./common/ui/Button";
@@ -9,6 +9,7 @@ import { LoginContainer } from "./views/Login/LoginContainer";
 import Post from "./views/Posts/components/Post";
 import { Footer } from "./common/components/Footer";
 import { ResetPass } from "./views/ResetPass";
+import { LanguageContext } from "./context/LanguageContext";
 
 const postsFromApi = [
   {
@@ -54,6 +55,10 @@ const userInfoFromApi = {
 };
 
 const App = (props) => {
+  const contextValue = useContext(LanguageContext);
+
+  console.log(contextValue);
+
   // const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState("false");
   const [posts, setPosts] = useState([]);
@@ -95,8 +100,8 @@ const App = (props) => {
         isLiked={posts[0].isLiked}
       /> */}
 
-      <LoginContainer />
-      <Registration />
+      {/* <LoginContainer /> */}
+      {/* <Registration /> */}
       <ResetPass />
       <Footer />
     </Main>
