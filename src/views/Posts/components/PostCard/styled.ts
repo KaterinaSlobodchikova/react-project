@@ -5,6 +5,10 @@ export const PostCardContainer = styled.div`
   width: 352px;
 
   margin-bottom: 40px;
+
+  .add-button {
+    margin-left: 10px;
+  }
 `;
 
 export const PostPreview = styled.img`

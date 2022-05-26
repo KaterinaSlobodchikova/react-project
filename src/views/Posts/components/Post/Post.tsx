@@ -6,12 +6,13 @@ import { IconBookmark } from "../../../../assets";
 import { IconButton, LikeButton, Title } from "../../../../common";
 
 import { PostActions, PostContainer, PostPreview, PostText } from "./styled";
-import { setCurrentPostAC, postsSelector } from "../../../../store";
+import { setCurrentPostAC, currentPostSelector } from "../../../../store";
+import { PostModel } from "../../../../types/models";
 
 export const Post: FC = () => {
   const dispatch = useDispatch();
   const { postId } = useParams<{ postId: string }>();
-  const posts = useSelector(postsSelector);
+  const currentPost = useSelector(currentPostSelector);
 
   useEffect(() => {
     dispatch(setCurrentPostAC(Number(postId)));
@@ -21,11 +22,11 @@ export const Post: FC = () => {
     <PostContainer>
       <Title
         className="post-title-for-children"
-        text={posts.currentPost?.title ?? ""}
+        text={currentPost?.title ?? ""}
         indent
       />
-      <PostPreview src={posts.currentPost?.image} alt="post-preview" />
-      <PostText>{posts.currentPost?.text}</PostText>
+      <PostPreview src={currentPost?.image} alt="post-preview" />
+      <PostText>{currentPost?.text}</PostText>
 
       <PostActions>
         <div className="button-container">
@@ -37,7 +38,7 @@ export const Post: FC = () => {
           icon={IconBookmark}
           title="Add to favorites"
           onClick={() => {
-            alert("added to fav");
+            alert("added to favs");
           }}
         />
       </PostActions>

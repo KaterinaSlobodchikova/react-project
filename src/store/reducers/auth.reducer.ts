@@ -1,16 +1,28 @@
-import { SET_AUTH } from "../types";
+import { AuthActions } from "../actions";
 
 const initialState = {
   auth: false,
 };
 
-export const authReducer = (state = initialState, action) => {
+type InitialState = typeof initialState;
+
+export const authReducer = (
+  state: InitialState = initialState,
+  action: AuthActions
+) => {
   switch (action.type) {
-    case SET_AUTH:
+    case "auth/SET_AUTH":
       return {
         ...state,
         auth: action.payload,
       };
+
+    case "auth/LOGOUT":
+      return {
+        ...state,
+        auth: false,
+      };
+
     default:
       return state;
   }

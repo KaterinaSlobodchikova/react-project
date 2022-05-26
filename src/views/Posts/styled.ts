@@ -3,14 +3,31 @@ import styled from "styled-components";
 export const StyledPostsContainer = styled.div`
   width: 100%;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 32px;
-
   padding-left: 50px;
 
   background-color: lightcyan;
+
+  .post-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+  }
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+  padding: 20px 40px;
+`;
+
+export const TabsSwitcher = styled.button`
+  min-width: 100px;
+  &.active {
+    border-bottom: 1px solid;
+  }
 `;
 
 export const NoPosts = styled.div`

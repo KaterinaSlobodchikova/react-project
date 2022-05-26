@@ -32,7 +32,7 @@ export const AddPost = () => {
       date,
       image,
       title,
-      author: userInfo.id,
+      author: userInfo?.id,
       text,
       lesson_num: 44,
       isLiked: false,

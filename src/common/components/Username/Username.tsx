@@ -5,7 +5,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { StyledUsername } from "./styled";
 
 type UsernameProps = {
-  name: string;
+  name: string | undefined;
 };
 
 export const Username: FC<UsernameProps> = memo((props) => {

@@ -30,7 +30,7 @@ export const Header: FC = () => {
       <Menu />
       {/* <Button title="change language" onClick={changeLanguageHandler} /> */}
 
-      <Username name={userInfo.username} />
+      <Username name={userInfo?.username} />
       <Button
         title="Log out"
         onClick={logoutHandler}

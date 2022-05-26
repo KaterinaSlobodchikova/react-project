@@ -13,16 +13,25 @@ import {
   ResetPass,
   AddPost,
 } from "../views";
-import { authInfoSelector, setAuthAC, getPostsAC, getUserAC } from "../store";
+
+import {
+  authInfoSelector,
+  setAuthAC,
+  getPostsAC,
+  getUserAC,
+  setCurrentPostAC,
+} from "../store";
+
 import { _store } from "../AppRoot";
 
 export const Routes: FC = () => {
   const dispatch = useDispatch();
-  const authInfo = useSelector(authInfoSelector);
+  const isAuth = useSelector(authInfoSelector);
 
   useEffect(() => {
     dispatch(setAuthAC(true));
     dispatch(getPostsAC(_store.posts));
+    // dispatch(setCurrentPostAC(_store.posts));
     dispatch(getUserAC(_store.user));
   }, []);
 
@@ -38,9 +47,7 @@ export const Routes: FC = () => {
         <Route path="registration" element={<Registration />} />
         <Route path="reset-password" element={<ResetPass />} />
 
-        <Route
-          element={<ProtectedRoute isAllow={!authInfo} pathToRedirect="/" />}
-        >
+        <Route element={<ProtectedRoute isAllow={isAuth} pathToRedirect="/" />}>
           <Route path="add-post" element={<AddPost />} />
         </Route>
 

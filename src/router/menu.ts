@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useMemo } from "react";
 
 import type { MenuModel } from "./types";
-import { authSelector } from "./../store/selectors";
+import { authInfoSelector } from "./../store/selectors";
 
 export const menuItems: MenuModel[] = [
   {
@@ -44,13 +44,13 @@ export const menuItems: MenuModel[] = [
 ];
 
 export const useAppMenu = () => {
-  const auth = useSelector(authSelector);
+  const isAuth = useSelector(authInfoSelector);
 
   const targetMenu = useMemo(() => {
     return menuItems.filter((m) => {
-      return auth.auth ? m : !m.private;
+      return isAuth ? m : !m.private;
     });
-  }, [auth.auth]);
+  }, [isAuth]);
 
   return {
     menu: targetMenu,
