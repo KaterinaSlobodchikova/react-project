@@ -6,6 +6,7 @@ import { Registration } from "./Registration";
 import { ResetPass } from "./ResetPass";
 import { AddPost } from "./AddPost";
 import { Page404 } from "./Page404";
+import { NewPass } from "./NewPass";
 
 export {
   AppLayout,
@@ -17,4 +18,5 @@ export {
   AddPost,
   Page404,
   LoginContainer,
+  NewPass,
 };

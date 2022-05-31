@@ -21,7 +21,7 @@ export const _store = {
       title:
         "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
       author: 7,
-      isLiked: true,
+      isLiked: null,
     },
     {
       id: 2,
@@ -33,6 +33,7 @@ export const _store = {
       title:
         "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
       author: 7,
+      isLiked: null,
     },
     {
       id: 3,
@@ -44,6 +45,7 @@ export const _store = {
       title:
         "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
       author: 7,
+      isLiked: null,
     },
   ],
   user: {

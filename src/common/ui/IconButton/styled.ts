@@ -8,7 +8,7 @@ export const StyledButton = styled.button`
   padding: 0 32px;
 
   border-radius: 2px;
-  background-color: ${({ theme }) => theme.palette.background.light};
+  background-color: lightgray;
 
   font-weight: 600;
   font-size: 18px;

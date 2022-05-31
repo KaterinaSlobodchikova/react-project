@@ -8,8 +8,7 @@ export const ResetPassContainer = styled.div`
   padding: 40px;
   width: 624px;
 
-  border: 1px solid #dadada;
-  background-color: #dadada;
+  border: 3px solid #dadada;
 `;
 
 export const EmailReceived = styled.div`

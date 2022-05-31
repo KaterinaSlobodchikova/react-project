@@ -22,6 +22,10 @@ export const favoritesPostsSelector = createSelector(
   postsSelector,
   (state) => state.favorites
 );
+export const postsLoadingSelector = createSelector(
+  postsSelector,
+  (state) => state.loading
+);
 
 //user
 export const userSelector = (state: AppState) => state.user;

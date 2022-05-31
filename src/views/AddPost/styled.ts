@@ -8,8 +8,7 @@ export const AddPostContainer = styled.div`
   padding: 40px;
   width: 624px;
 
-  border: 1px solid #dadada;
-  background-color: #dadada;
+  border: 3px solid #dadada;
 
   .gray {
     color: ${({ theme }) => theme.palette.system.secondary};

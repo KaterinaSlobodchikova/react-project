@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
 
-    "strict": false,
+    "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "noImplicitOverride": true,

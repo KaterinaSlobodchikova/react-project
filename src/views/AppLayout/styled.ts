@@ -4,10 +4,10 @@ export const AppLayoutContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 
   width: 100%;
   min-height: 100vh;
 
-  background-color: lightblue;
+  background-color: #e5e5e5;
 `;

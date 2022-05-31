@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Input, Title } from "../../common";
 import { AddPostContainer } from "./styled";
 import { useInputValue } from "../../utils/hooks/useInputValue";
-import { addPostAC, userInfoSelector } from "../../store";
+import { addPostAC, addPostTC, userInfoSelector } from "../../store";
 import { PostModel } from "../../types/models";
 
 export const AddPost = () => {
@@ -28,16 +28,19 @@ export const AddPost = () => {
     if (date.length === 0) return;
 
     const postData: PostModel = {
-      id: Math.floor(Math.random() * 1000),
-      date,
-      image,
+      //id: Math.floor(Math.random() * 1000),
+      //date,
+      //image,
       title,
-      author: userInfo?.id,
-      text,
-      lesson_num: 44,
-      isLiked: false,
+      //author: userInfo?.id,
+      body: text,
+      //lesson_num: 44,
+      //isLiked: false,
+      userId: userInfo?.id,
     };
-    dispatch(addPostAC(postData));
+    //dispatch(addPostAC(postData));
+    //@ts-ignore
+    dispatch(addPostTC(postData));
   };
 
   const closeAddPostHandler = () => {

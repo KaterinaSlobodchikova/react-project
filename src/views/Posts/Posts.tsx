@@ -10,6 +10,7 @@ import {
   favoritesPostsSelector,
   removeFromFavAC,
   addToFavAC,
+  togglePostLikeAC,
 } from "../../store";
 import type { PostModel } from "../../types/models";
 
@@ -19,7 +20,9 @@ export const Posts: FC = () => {
   const dispatch = useDispatch();
   const [currentTab, setCurrentTab] = useState<Tabs>("All");
   const posts = useSelector<AppState, PostModel[]>(postsInfoSelector);
-  const favoritesPosts = useSelector(favoritesPostsSelector);
+  const favoritesPosts = useSelector<AppState, PostModel[]>(
+    favoritesPostsSelector
+  );
 
   const changeTabHandler = () => {
     if (currentTab === "All") setCurrentTab("My favorites");
@@ -38,25 +41,33 @@ export const Posts: FC = () => {
     [favoritesPosts]
   );
 
+  const toggleLikeHandler = useCallback((id: number, value: boolean) => {
+    dispatch(togglePostLikeAC({ id, value }));
+  }, []);
+
   const allPostsElements = useMemo(() => {
     return posts?.map((post: PostModel) => (
       <PostCard
         key={post.id}
         post={post}
+        liked={post.isLiked}
         onFavsToggle={toggleFavoritesHandler}
+        onLikeToggle={toggleLikeHandler}
       />
     ));
-  }, [posts, toggleFavoritesHandler]);
+  }, [posts, toggleFavoritesHandler, toggleLikeHandler]);
 
   const favoritesPostsElements = useMemo(() => {
     return favoritesPosts?.map((post: PostModel) => (
       <PostCard
         key={post.id}
         post={post}
+        liked={post.isLiked}
         onFavsToggle={toggleFavoritesHandler}
+        onLikeToggle={toggleLikeHandler}
       />
     ));
-  }, [favoritesPosts, toggleFavoritesHandler]);
+  }, [favoritesPosts, toggleFavoritesHandler, toggleLikeHandler]);
 
   const hasPosts = !!posts?.length;
   if (hasPosts) {

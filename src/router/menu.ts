@@ -41,6 +41,12 @@ export const menuItems: MenuModel[] = [
     path: "add-post",
     private: true,
   },
+  {
+    name: "setNewPass",
+    title: "New Password",
+    path: "set-new-password",
+    private: false,
+  },
 ];
 
 export const useAppMenu = () => {

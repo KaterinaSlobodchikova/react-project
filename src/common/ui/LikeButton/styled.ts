@@ -6,12 +6,16 @@ export const StyledLikeButton = styled.button`
   width: 88px;
   height: 56px;
 
-  background: #e8e8e8;
+  background: lightgray;
   border-radius: 2px;
+
+  &.active {
+    background: #eedb7b;
+  }
 `;
 
-export const ButtonImage = styled.img`
-  &.disLike {
-    transform: rotate(180deg);
-  }
+export const LikeImage = styled.img``;
+
+export const DislikeImage = styled.img`
+  transform: rotate(180deg);
 `;

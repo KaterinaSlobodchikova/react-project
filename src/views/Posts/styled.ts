@@ -5,8 +5,6 @@ export const StyledPostsContainer = styled.div`
 
   padding-left: 50px;
 
-  background-color: lightcyan;
-
   .post-container {
     display: flex;
     flex-wrap: wrap;

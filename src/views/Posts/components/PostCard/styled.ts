@@ -42,3 +42,14 @@ export const DefaultPreview = styled.img`
 
   margin-bottom: 24px;
 `;
+
+export const PostActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+`;
+
+export const LikesContainer = styled.div`
+  display: flex;
+`;

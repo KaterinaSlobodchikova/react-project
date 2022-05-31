@@ -10,6 +10,7 @@ import { LikeButton } from "./ui/LikeButton";
 import { IconButton } from "./ui/IconButton";
 import { Link } from "./ui/Link";
 import { Title } from "./ui/Title";
+import { Spinner } from "./ui/Spinner";
 
 export {
   Header,
@@ -23,4 +24,5 @@ export {
   IconButton,
   Link,
   Title,
+  Spinner,
 };

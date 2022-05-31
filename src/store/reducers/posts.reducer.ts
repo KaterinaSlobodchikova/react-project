@@ -6,6 +6,7 @@ import {
   GET_POSTS,
   REMOVE_FROM_FAV,
   SET_CURRENT_POST,
+  TOGGLE_POST_LIKE,
 } from "../types";
 
 const initialState = {
@@ -13,16 +14,21 @@ const initialState = {
   currentPost: null,
   favorites: [],
   isLiked: [],
+  loading: false,
 };
 
-//type InitialState = {
-//  posts: PostModel[];
-//  currentPost: null | PostModel;
-//  favorites: PostModel[];
-//  isLiked: PostModel[];
-//};
+type InitialState = {
+  posts: PostModel[];
+  currentPost: null | PostModel;
+  favorites: PostModel[];
+  isLiked: PostModel[];
+  loading: boolean;
+};
 
-export const postsReducer = (state = initialState, action: PostsActions) => {
+export const postsReducer = (
+  state: InitialState = initialState,
+  action: PostsActions
+) => {
   switch (action.type) {
     case GET_POSTS:
       return {
@@ -44,6 +50,12 @@ export const postsReducer = (state = initialState, action: PostsActions) => {
         posts: [action.payload, ...state.posts],
       };
 
+    case "posts/SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
     case ADD_TO_FAV:
       return {
         ...state,
@@ -59,6 +71,25 @@ export const postsReducer = (state = initialState, action: PostsActions) => {
         favorites: state.favorites.filter(
           (p: PostModel) => p.id !== action.payload
         ),
+      };
+
+    case TOGGLE_POST_LIKE:
+      return {
+        ...state,
+        posts: state.posts.map((p: PostModel) =>
+          p.id === action.payload.id
+            ? { ...p, isLiked: action.payload.value }
+            : p
+        ),
+        favorites: state.favorites.map((p: PostModel) =>
+          p.id === action.payload.id
+            ? { ...p, isLiked: action.payload.value }
+            : p
+        ),
+        currentPost:
+          state.currentPost?.id === action.payload.id
+            ? { ...state.currentPost, isLiked: action.payload.value }
+            : state.currentPost,
       };
 
     default:
