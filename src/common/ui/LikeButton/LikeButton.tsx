@@ -7,7 +7,7 @@ type LikeButtonType = "like" | "dislike";
 
 interface LikeButtonProps {
   type?: LikeButtonType;
-  liked: boolean;
+  liked: boolean | null | undefined;
   onToggleLike: (type: boolean) => void;
 }
 

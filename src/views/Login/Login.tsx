@@ -50,8 +50,8 @@ export const Login: FC<LoginProps> = (props) => {
       <ForgotPass>
         <Link to="/reset-password">Forgot password?</Link>
       </ForgotPass>
-      <Input type="checkbox" checked={isRemember} onChange={rememberHandler} />
-      <p>Remember me?</p>
+      {/*<Input type="checkbox" checked={isRemember} onChange={rememberHandler} />
+      <p>Remember me?</p>*/}
       <Button title="Sign In" onClick={loginHandler} />
       <HaveAccount>
         Don’t have an account? <Link to="/registration">Sign Up</Link>

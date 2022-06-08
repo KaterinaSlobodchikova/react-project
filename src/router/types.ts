@@ -3,4 +3,5 @@ export type MenuModel = {
   title: string;
   path: string;
   private: boolean;
+  guestOnly: boolean;
 };

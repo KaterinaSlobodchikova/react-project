@@ -1,7 +1,5 @@
-import type { TODO_ANY } from "../any";
-
 export type UserModel = {
-  id: TODO_ANY;
+  id: number;
   username: string;
   email: string;
 };

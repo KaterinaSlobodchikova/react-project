@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const baseLinkStyles = css`
@@ -7,13 +8,13 @@ const baseLinkStyles = css`
   text-decoration: none;
 `;
 
-export const PrimaryLink = styled.a`
+export const PrimaryLink = styled(Link)`
   ${baseLinkStyles};
 
   color: ${({ theme }) => theme.palette.system.primary};
 `;
 
-export const SecondaryLink = styled.a`
+export const SecondaryLink = styled(Link)`
   ${baseLinkStyles};
   color: ${({ theme }) => theme.palette.system.secondary};
   &:hover {

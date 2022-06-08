@@ -3,8 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { Login } from "./Login";
 import { useInputValue } from "../../utils/hooks/useInputValue";
+import { loginTC, useAppDispatch } from "../../store";
+import type { LoginDTO } from "../../services/api/auth";
 
 export const LoginContainer: FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -35,9 +38,9 @@ export const LoginContainer: FC = () => {
       email,
       password,
       rememberMe: isRemember,
-    };
-    console.log("We logged in with this data:", loginData);
-    navigate("/", { replace: true, state: { from: location } });
+    } as LoginDTO;
+    dispatch(loginTC(loginData));
+    //navigate("/", { replace: true, state: { from: location } });
   };
 
   const rememberHandler = useCallback(() => {

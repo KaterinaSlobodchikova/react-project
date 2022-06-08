@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Routes as RoutesSource, Route } from "react-router-dom";
 
 import { ProtectedRoute } from "./ProtectedRoute";
@@ -13,29 +13,17 @@ import {
   ResetPass,
   AddPost,
   NewPass,
+  Activation,
 } from "../views";
 
-import {
-  authInfoSelector,
-  setAuthAC,
-  setPostsAC,
-  getUserAC,
-  setCurrentPostAC,
-  getPostsTC,
-} from "../store";
-
-import { _store } from "../AppRoot";
+import { authInfoSelector, useAppDispatch, initAppTC } from "../store";
 
 export const Routes: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isAuth = useSelector(authInfoSelector);
 
   useEffect(() => {
-    dispatch(setAuthAC(true));
-    //dispatch(setPostsAC(_store.posts));
-    //@ts-ignore
-    dispatch(getPostsTC());
-    dispatch(getUserAC(_store.user));
+    dispatch(initAppTC());
   }, []);
 
   return (
@@ -46,14 +34,19 @@ export const Routes: FC = () => {
         <Route path="posts" element={<Posts />} />
         <Route path="posts/:postId" element={<Post />} />
 
-        <Route path="login" element={<LoginContainer />} />
-        <Route path="registration" element={<Registration />} />
-        <Route path="reset-password" element={<ResetPass />} />
-
         <Route element={<ProtectedRoute isAllow={isAuth} pathToRedirect="/" />}>
           <Route path="add-post" element={<AddPost />} />
+          <Route path="set-new-password" element={<NewPass />} />
         </Route>
-        <Route path="set-new-password" element={<NewPass />} />
+
+        <Route
+          element={<ProtectedRoute isAllow={!isAuth} pathToRedirect="/posts" />}
+        >
+          <Route path="login" element={<LoginContainer />} />
+          <Route path="registration" element={<Registration />} />
+          <Route path="reset-password" element={<ResetPass />} />
+          <Route path="activate/:uid/:token" element={<Activation />} />
+        </Route>
 
         <Route path="*" element={<Page404 />} />
       </Route>

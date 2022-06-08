@@ -1,13 +1,14 @@
-import type { PostModel } from "../../types/models";
+import type { PostModel } from "../../types";
 import type { PostsActions } from "../actions";
 import {
   ADD_POSTS,
   ADD_TO_FAV,
-  GET_POSTS,
+  SET_POSTS,
   REMOVE_FROM_FAV,
   SET_CURRENT_POST,
   TOGGLE_POST_LIKE,
 } from "../types";
+import { mapPostIntoView } from "../utils";
 
 const initialState = {
   posts: [],
@@ -28,20 +29,18 @@ type InitialState = {
 export const postsReducer = (
   state: InitialState = initialState,
   action: PostsActions
-) => {
+): InitialState => {
   switch (action.type) {
-    case GET_POSTS:
+    case SET_POSTS:
       return {
         ...state,
-        posts: action.payload,
+        posts: action.payload.map((p) => mapPostIntoView(p)),
       };
 
     case SET_CURRENT_POST:
       return {
         ...state,
-        currentPost: state.posts.find(
-          (p: PostModel) => p.id === action.payload
-        ),
+        currentPost: mapPostIntoView(action.payload),
       };
 
     case ADD_POSTS:
@@ -61,7 +60,7 @@ export const postsReducer = (
         ...state,
         favorites: [
           ...state.favorites,
-          state.posts.find((p: PostModel) => p.id === action.payload),
+          state.posts.find((p: PostModel) => p.id === action.payload)!,
         ],
       };
 

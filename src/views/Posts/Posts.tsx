@@ -1,6 +1,6 @@
 import { FC, useMemo, useCallback, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { StyledPostsContainer, NoPosts, Tabs, TabsSwitcher } from "./styled";
 import { PostCard } from "./components/PostCard";
@@ -11,13 +11,14 @@ import {
   removeFromFavAC,
   addToFavAC,
   togglePostLikeAC,
+  useAppDispatch,
 } from "../../store";
 import type { PostModel } from "../../types/models";
 
 type Tabs = "All" | "My favorites";
 
 export const Posts: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [currentTab, setCurrentTab] = useState<Tabs>("All");
   const posts = useSelector<AppState, PostModel[]>(postsInfoSelector);
   const favoritesPosts = useSelector<AppState, PostModel[]>(
@@ -50,7 +51,7 @@ export const Posts: FC = () => {
       <PostCard
         key={post.id}
         post={post}
-        liked={post.isLiked}
+        liked={post.isLiked!}
         onFavsToggle={toggleFavoritesHandler}
         onLikeToggle={toggleLikeHandler}
       />
@@ -62,7 +63,7 @@ export const Posts: FC = () => {
       <PostCard
         key={post.id}
         post={post}
-        liked={post.isLiked}
+        liked={post.isLiked!}
         onFavsToggle={toggleFavoritesHandler}
         onLikeToggle={toggleLikeHandler}
       />

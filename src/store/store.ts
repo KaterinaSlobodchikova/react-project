@@ -3,9 +3,10 @@ import {
   combineReducers,
   applyMiddleware,
   Middleware,
+  Reducer,
 } from "redux";
-
-import thunk from "redux-thunk";
+import { useDispatch } from "react-redux";
+import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 import logger from "redux-logger";
 import { composeWithDevTools } from "@redux-devtools/extension";
 
@@ -19,11 +20,11 @@ const combinedReducer = combineReducers({
   auth: authReducer,
 });
 
-const rootReducer = (state, action: AppAction) => {
+const rootReducer: Reducer = (state: AppState, action: AppAction) => {
   if (action.type === LOGOUT) {
-    // const postsState = state.posts; // save posts state after logout
-    state = {};
-    // state = { ...state, posts: postsState };
+    const postsState = state.posts; // save posts state after logout
+    state = {} as AppState;
+    state = { ...state, posts: postsState };
   }
   return combinedReducer(state, action);
 };
@@ -44,8 +45,12 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
-export type AppState = ReturnType<typeof rootReducer>;
+export const useAppDispatch = () => useDispatch<DispatchType>();
+
 type AppAction = UserActions | PostsActions | AuthActions;
+type DispatchType = ThunkDispatch<AppState, unknown, AppAction>;
+export type AppState = ReturnType<typeof combinedReducer>;
+export type AppThunk = ThunkAction<void, AppState, unknown, AppAction>;
 
 // функция для отмены подписки на изменения store
 //const unsubscribe = store.subscribe(() => {
@@ -56,6 +61,3 @@ type AppAction = UserActions | PostsActions | AuthActions;
 //   unsubscribe();
 //   console.log("unsubscribed");
 // }, 1000);
-
-// @ts-ignore
-window.store = store;

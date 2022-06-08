@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { Button, Input, Title } from "../../common";
 import { HaveAccount, RegistrationContainer } from "./styled";
 import { useInputValue } from "../../utils/hooks/useInputValue";
+import { registrationTC, useAppDispatch } from "../../store";
+import { RegistrationDTO } from "../../services/api/auth";
 
 export const Registration: FC = () => {
+  const dispatch = useAppDispatch();
   // const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
@@ -35,12 +38,11 @@ export const Registration: FC = () => {
 
   const signUpHandler = () => {
     const signUpData = {
-      name,
+      username: name,
       email,
       password,
-      confirmPassword,
-    };
-    console.log("Registration request was sent with this data:", signUpData);
+    } as RegistrationDTO;
+    dispatch(registrationTC(signUpData));
   };
 
   return (

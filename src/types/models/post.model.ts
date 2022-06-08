@@ -1,4 +1,4 @@
-export type _PostModel = {
+export type PostModel = {
   id: number;
   image: string;
   text: string;
@@ -6,17 +6,5 @@ export type _PostModel = {
   lesson_num: number;
   title: string;
   author: number;
-  isLiked?: boolean;
-};
-
-export type PostModel = {
-  id?: number;
-  image?: string;
-  body: string;
-  date?: string;
-  lesson_num?: number;
-  title: string;
-  author?: number;
-  isLiked?: boolean;
-  userId?: number;
+  isLiked?: null | boolean;
 };

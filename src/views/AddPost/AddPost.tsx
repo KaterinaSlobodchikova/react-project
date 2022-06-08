@@ -1,15 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC, useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 import { Button, Input, Title } from "../../common";
 import { AddPostContainer } from "./styled";
 import { useInputValue } from "../../utils/hooks/useInputValue";
-import { addPostAC, addPostTC, userInfoSelector } from "../../store";
-import { PostModel } from "../../types/models";
+import {
+  addPostAC,
+  addPostTC,
+  useAppDispatch,
+  userInfoSelector,
+} from "../../store";
+import { PostModel } from "../../types";
 
-export const AddPost = () => {
-  const dispatch = useDispatch();
+export const AddPost: FC = () => {
+  const dispatch = useAppDispatch();
   const userInfo = useSelector(userInfoSelector);
+  const userId = userInfo?.id;
 
   const [title, titleHandler] = useInputValue();
   const [url, urlHandler] = useInputValue();
@@ -28,18 +34,16 @@ export const AddPost = () => {
     if (date.length === 0) return;
 
     const postData: PostModel = {
-      //id: Math.floor(Math.random() * 1000),
-      //date,
-      //image,
+      id: Math.floor(Math.random() * 1000),
+      date,
+      image,
       title,
-      //author: userInfo?.id,
-      body: text,
-      //lesson_num: 44,
-      //isLiked: false,
-      userId: userInfo?.id,
+      author: userId!,
+      text,
+      lesson_num: 44,
+      isLiked: false,
     };
     //dispatch(addPostAC(postData));
-    //@ts-ignore
     dispatch(addPostTC(postData));
   };
 

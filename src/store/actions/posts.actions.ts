@@ -1,32 +1,26 @@
-import {
-  ADD_POSTS,
-  ADD_TO_FAV,
-  GET_POSTS,
-  SET_CURRENT_POST,
-  REMOVE_FROM_FAV,
-  TOGGLE_POST_LIKE,
-} from "../types";
-import type { PostModel } from "../../types/models";
+import type { PostModel } from "../../types";
+import api from "../../services";
+import type { AppThunk } from "../store";
 
-export const setPostsAC = (payload: GetPosts) => {
+export const setPostsAC = (payload: PostModel[]) => {
   return {
-    type: GET_POSTS,
+    type: "posts/SET_POSTS",
     payload,
-  };
+  } as const;
 };
 
-export const setCurrentPostAC = (payload: SetCurrentPost) => {
+export const setCurrentPostAC = (payload: Omit<PostModel, "isLiked">) => {
   return {
-    type: SET_CURRENT_POST,
+    type: "posts/SET_CURRENT_POST",
     payload,
-  };
+  } as const;
 };
 
-export const addPostAC = (payload: AddPost) => {
+export const addPostAC = (payload: PostModel) => {
   return {
-    type: ADD_POSTS,
+    type: "posts/ADD_POSTS",
     payload,
-  };
+  } as const;
 };
 
 export const setLoadingAC = (payload: boolean) => {
@@ -36,92 +30,108 @@ export const setLoadingAC = (payload: boolean) => {
   } as const;
 };
 
-export const addToFavAC = (payload: AddToFav) => {
+export const addToFavAC = (payload: number) => {
   return {
-    type: ADD_TO_FAV,
+    type: "posts/ADD_TO_FAV",
     payload,
-  };
+  } as const;
 };
 
-export const removeFromFavAC = (payload: RemoveFromFav) => {
+export const removeFromFavAC = (payload: number) => {
   return {
-    type: REMOVE_FROM_FAV,
+    type: "posts/REMOVE_FROM_FAV",
     payload,
-  };
+  } as const;
 };
 
-export const togglePostLikeAC = (payload: TogglePostLike) => {
+export const togglePostLikeAC = (payload: { id: number; value: boolean }) => {
   return {
-    type: TOGGLE_POST_LIKE,
+    type: "posts/TOGGLE_POST_LIKE",
     payload,
-  };
+  } as const;
 };
 
-export const getPostsTC = () => async (dispatch: any) => {
+export const getPostsTC = (): AppThunk => async (dispatch) => {
   dispatch(setLoadingAC(true));
-  const url = "https://jsonplaceholder.typicode.com/posts";
-  const response = await fetch(url);
 
   try {
-    if (response.ok) {
-      const json = await response.json();
-      dispatch(setPostsAC(json));
+    const response = await api.blog.getPosts();
+    if (response.status === 200) {
+      dispatch(setPostsAC(response.data.results));
       dispatch(setLoadingAC(false));
 
       return response;
     }
     throw new Error();
   } catch (e) {
-    console.log("Ошибка:" + e);
-    console.log("Ошибка:" + response.status);
+    console.error(e);
     dispatch(setLoadingAC(false));
-    return;
+    return e;
   }
 };
 
-export const addPostTC = (newPost: PostModel) => async (dispatch: any) => {
-  dispatch(setLoadingAC(true));
-  const url = "https://jsonplaceholder.typicode.com/posts";
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-    body: JSON.stringify(newPost),
-  };
-  const response = await fetch(url, options);
+export const getPostTC =
+  (id: number): AppThunk =>
+  async (dispatch) => {
+    dispatch(setLoadingAC(true));
 
-  try {
-    if (response.ok) {
-      //const json = await response.json();
-      //dispatch(setPostsAC(json));
+    try {
+      const response = await api.blog.getPost(id);
+      if (response.status === 200) {
+        dispatch(setCurrentPostAC(response.data));
+        dispatch(setLoadingAC(false));
+
+        return response;
+      }
+      throw new Error();
+    } catch (e) {
+      console.error(e);
       dispatch(setLoadingAC(false));
-
-      return response;
+      return e;
     }
-    throw new Error();
-  } catch (e) {
-    console.log("Ошибка:" + e);
-    console.log("Ошибка:" + response.status);
-    dispatch(setLoadingAC(false));
-    return;
-  }
-};
+  };
+
+export const addPostTC =
+  (newPost: PostModel): AppThunk =>
+  async (dispatch) => {
+    dispatch(setLoadingAC(true));
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(newPost),
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (response.ok) {
+        //const json = await response.json();
+        //dispatch(setPostsAC(json));
+        dispatch(setLoadingAC(false));
+
+        return response;
+      }
+      throw new Error();
+    } catch (e) {
+      console.error("Ошибка:" + e);
+      dispatch(setLoadingAC(false));
+      return e;
+    }
+  };
 
 //
-type GetPosts = { type: typeof GET_POSTS; payload: PostModel[] };
-type SetCurrentPost = { type: typeof SET_CURRENT_POST; payload: number };
-type AddPost = { type: typeof ADD_POSTS; payload: PostModel };
-type AddToFav = { type: typeof ADD_TO_FAV; payload: number };
-type RemoveFromFav = { type: typeof REMOVE_FROM_FAV; payload: number };
-type TogglePostLike = {
-  type: typeof TOGGLE_POST_LIKE;
-  payload: { id: number; value: boolean };
-};
+type SetPosts = ReturnType<typeof setPostsAC>;
+type SetCurrentPost = ReturnType<typeof setCurrentPostAC>;
+type AddPost = ReturnType<typeof addPostAC>;
+type AddToFav = ReturnType<typeof addToFavAC>;
+type RemoveFromFav = ReturnType<typeof removeFromFavAC>;
+type TogglePostLike = ReturnType<typeof togglePostLikeAC>;
 type SetLoading = ReturnType<typeof setLoadingAC>;
 
 export type PostsActions =
-  | GetPosts
+  | SetPosts
   | SetCurrentPost
   | AddPost
   | SetLoading

@@ -33,3 +33,7 @@ export const userInfoSelector = createSelector(
   userSelector,
   (state) => state.user
 );
+export const userLoadingSelector = createSelector(
+  userSelector,
+  (state) => state.loading
+);

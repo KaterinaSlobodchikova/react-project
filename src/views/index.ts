@@ -1,4 +1,5 @@
 import { AppLayout } from "./AppLayout";
+import { Activation } from "./Activation";
 import { Login } from "./Login";
 import { LoginContainer } from "./Login/LoginContainer";
 import { Post, Posts } from "./Posts";
@@ -11,6 +12,7 @@ import { NewPass } from "./NewPass";
 export {
   AppLayout,
   Login,
+  Activation,
   Post,
   Posts,
   Registration,
