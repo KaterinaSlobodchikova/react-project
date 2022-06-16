@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, ReactElement } from "react";
 
 import { StyledButton } from "./styled";
 
 type ButtonProps = {
-  title: string;
+  content: ReactElement | string | number;
   disabled?: boolean;
   onClick: () => void;
   className?: string;
@@ -12,7 +12,7 @@ type ButtonProps = {
 
 export const Button: FC<ButtonProps> = (props) => {
   const {
-    title,
+    content,
     onClick,
     disabled = false,
     secondary = false,
@@ -25,7 +25,7 @@ export const Button: FC<ButtonProps> = (props) => {
       disabled={disabled}
       className={secondary ? "secondary ${className}" : className}
     >
-      {title}
+      {content}
     </StyledButton>
   );
 };

@@ -2,10 +2,22 @@ import { FC, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { IconBookmark } from "../../../../assets";
+import {
+  IconBookmark,
+  IconArrowLeft,
+  IconArrowRight,
+} from "../../../../assets";
 import { IconButton, LikeButton, Title } from "../../../../common";
 
-import { PostActions, PostContainer, PostPreview, PostText } from "./styled";
+import {
+  PostActions,
+  PostContainer,
+  PostPreview,
+  PostText,
+  LinkContainer,
+  PostLink,
+  PostNavigation,
+} from "./styled";
 import {
   currentPostSelector,
   togglePostLikeAC,
@@ -64,6 +76,25 @@ export const Post: FC = () => {
           }}
         />
       </PostActions>
+
+      <div className="bottom-line" />
+
+      <PostNavigation>
+        <PostLink>
+          <img src={IconArrowLeft} alt="arrow-left" />
+          <LinkContainer>
+            <span className="button-title">Prev</span>
+            <span>Previous post title is here</span>
+          </LinkContainer>
+        </PostLink>
+        <PostLink>
+          <LinkContainer className="next-link">
+            <span className="button-title">Next</span>
+            <span>Next post title is here</span>
+          </LinkContainer>
+          <img src={IconArrowRight} alt="arrow-right" />
+        </PostLink>
+      </PostNavigation>
     </PostContainer>
   );
 };

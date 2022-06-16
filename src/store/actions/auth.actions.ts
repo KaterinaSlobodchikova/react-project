@@ -80,6 +80,7 @@ export const initAppTC = (): AppThunk => async (dispatch) => {
 
     if (getToken("access")) {
       await dispatch(getUserInfoTC());
+      dispatch(setAuthAC(true));
     }
   } catch (e) {
     console.error(e);

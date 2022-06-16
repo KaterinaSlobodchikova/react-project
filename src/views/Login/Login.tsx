@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, KeyboardEvent } from "react";
 
 import { Button } from "../../common/ui/Button";
 import { Input } from "../../common/ui/Input";
@@ -15,6 +15,7 @@ interface LoginProps {
   rememberHandler: (e: ChangeEvent<HTMLInputElement>) => void;
   loginHandler: () => void;
   welcomeTextShown: boolean;
+  onEnterSearchHandler: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const Login: FC<LoginProps> = (props) => {
@@ -27,6 +28,7 @@ export const Login: FC<LoginProps> = (props) => {
     rememberHandler,
     loginHandler,
     welcomeTextShown,
+    onEnterSearchHandler,
   } = props;
 
   return (
@@ -46,13 +48,16 @@ export const Login: FC<LoginProps> = (props) => {
         value={password}
         onChange={passwordValueHandler}
         placeholder="Your password"
+        onKeyDown={onEnterSearchHandler}
       />
       <ForgotPass>
         <Link to="/reset-password">Forgot password?</Link>
       </ForgotPass>
       {/*<Input type="checkbox" checked={isRemember} onChange={rememberHandler} />
       <p>Remember me?</p>*/}
-      <Button title="Sign In" onClick={loginHandler} />
+
+      <Button content="Sign In" onClick={loginHandler} />
+
       <HaveAccount>
         Don’t have an account? <Link to="/registration">Sign Up</Link>
       </HaveAccount>

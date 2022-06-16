@@ -25,6 +25,7 @@ export const AddPost: FC = () => {
   const [text, textHandler] = useInputValue();
 
   const inputRef = useRef(null);
+
   useEffect(() => {
     console.log(inputRef.current);
   }, []);
@@ -112,11 +113,11 @@ export const AddPost: FC = () => {
       <button>Delete post</button>
 
       <Button
-        title="Cancel"
+        content="Cancel"
         onClick={closeAddPostHandler}
         className="secondary gray"
       />
-      <Button title="Add post" onClick={addPostHandler} />
+      <Button content="Add post" onClick={addPostHandler} />
     </AddPostContainer>
   );
 };

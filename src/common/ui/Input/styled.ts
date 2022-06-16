@@ -13,4 +13,8 @@ export const StyledInput = styled.input`
   &:not(:last-of-type) {
     margin-bottom: 40px;
   }
+
+  &:disabled {
+    background: ${(props) => props.theme.palette.background.light};
+  }
 `;

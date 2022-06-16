@@ -1,9 +1,9 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, KeyboardEvent, useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { Login } from "./Login";
 import { useInputValue } from "../../utils/hooks/useInputValue";
-import { loginTC, useAppDispatch } from "../../store";
+import { getPostsTC, loginTC, useAppDispatch } from "../../store";
 import type { LoginDTO } from "../../services/api/auth";
 
 export const LoginContainer: FC = () => {
@@ -47,6 +47,17 @@ export const LoginContainer: FC = () => {
     setIsRemember(!isRemember);
   }, []);
 
+  const onEnterSearchHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    const loginData = {
+      email,
+      password,
+      rememberMe: isRemember,
+    } as LoginDTO;
+    if (e.key === "Enter") {
+      dispatch(loginTC(loginData));
+    }
+  };
+
   return (
     <Login
       email={email}
@@ -57,6 +68,7 @@ export const LoginContainer: FC = () => {
       rememberHandler={rememberHandler}
       loginHandler={loginHandler}
       welcomeTextShown={welcomeTextShown}
+      onEnterSearchHandler={onEnterSearchHandler}
     />
   );
 };

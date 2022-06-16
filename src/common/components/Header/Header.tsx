@@ -1,11 +1,12 @@
 import { FC, useContext } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { Username } from "../Username";
 import { StyledHeaderContainer } from "./styled";
 import { Button } from "../../ui/Button";
 import { Menu } from "../Menu";
+
 import {
   useAppDispatch,
   userInfoSelector,
@@ -14,10 +15,13 @@ import {
   logoutTC,
   authInfoSelector,
 } from "../../../store";
+import { SearchInputClick } from "../SearchInputClick";
+import { SearchInputDebounce } from "../SearchInputDebounce";
 
 export const Header: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const userInfo = useSelector(userInfoSelector);
   const isAuth = useSelector(authInfoSelector);
@@ -41,21 +45,24 @@ export const Header: FC = () => {
   return (
     <StyledHeaderContainer>
       <Menu />
-      {/* <Button title="change language" onClick={changeLanguageHandler} /> */}
+      {/*<SearchInputClick />*/}
+      <SearchInputDebounce />
+
+      {/* <Button content="change language" onClick={changeLanguageHandler} /> */}
 
       {/*isLoading ? "" : <Username name={userInfo?.username} />*/}
       {isAuth ? (
         <>
           <Username name={userInfo?.username} />
           <Button
-            title="Log out"
+            content="Log out"
             onClick={logoutHandler}
             className="secondary small"
           />
         </>
       ) : (
         <Button
-          title="Log in"
+          content="Log in"
           onClick={loginHandler}
           className="secondary small"
         />

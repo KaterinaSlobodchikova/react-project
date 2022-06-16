@@ -13,7 +13,8 @@ export const history = createBrowserHistory({ window });
 
 export const AppRoot: FC = () => {
   return (
-    <React.StrictMode>
+    <>
+      {/*<React.StrictMode>*/}
       <Provider store={store}>
         <HistoryRouter history={history}>
           <LanguageProvider>
@@ -24,6 +25,7 @@ export const AppRoot: FC = () => {
           </LanguageProvider>
         </HistoryRouter>
       </Provider>
-    </React.StrictMode>
+      {/*</React.StrictMode>*/}
+    </>
   );
 };

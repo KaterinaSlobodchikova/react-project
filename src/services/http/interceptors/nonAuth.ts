@@ -1,10 +1,8 @@
-import { setToken } from "./../tokens/setToken";
-import { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosError, AxiosInstance } from "axios";
 
-import { clearToken } from "../tokens";
+import { clearToken, getToken, setToken } from "../tokens";
 import { history } from "../../../AppRoot";
 import api from "../../api";
-import { getToken } from "./../tokens/getToken";
 
 export const notAuthInterceptor = (instance: AxiosInstance) => {
   instance.interceptors.response.use(undefined, (error: AxiosError) => {
@@ -15,11 +13,21 @@ export const notAuthInterceptor = (instance: AxiosInstance) => {
         api.auth.verifyToken({ token: refreshToken }).then(() => {
           api.auth.refreshToken({ refresh: refreshToken }).then((res) => {
             setToken("access", res.data.access);
+
+            if (!error.config) {
+              error.config = {};
+            }
+            if (!error.config.headers) {
+              error.config.headers = {};
+            }
+
+            error.config.headers["Authorization"] =
+              "Bearer " + getToken("access");
+
+            return axios.request(error.config);
           });
         });
-        return;
       }
-
       clearToken("access");
       clearToken("refresh");
       history.push("/login");

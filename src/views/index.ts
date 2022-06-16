@@ -8,6 +8,7 @@ import { ResetPass } from "./ResetPass";
 import { AddPost } from "./AddPost";
 import { Page404 } from "./Page404";
 import { NewPass } from "./NewPass";
+import { SearchPage } from "./SearchPage";
 
 export {
   AppLayout,
@@ -21,4 +22,5 @@ export {
   Page404,
   LoginContainer,
   NewPass,
+  SearchPage,
 };

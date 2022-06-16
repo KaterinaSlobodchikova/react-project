@@ -2,13 +2,13 @@ import axios from "axios";
 import type { PostModel } from "../../../types";
 import { config } from "../../http";
 
-type GetPostsDTO = {
-  author: number;
-  lesson_num: number;
-  limit: number;
-  offset: number;
-  ordering: string;
-  search: string;
+export type GetPostsDTO = {
+  author?: number;
+  lesson_num?: number;
+  limit?: number;
+  offset?: number;
+  ordering?: string;
+  search?: string;
 };
 
 type Response = {

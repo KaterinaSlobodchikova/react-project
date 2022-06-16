@@ -14,6 +14,7 @@ import {
   AddPost,
   NewPass,
   Activation,
+  SearchPage,
 } from "../views";
 
 import { authInfoSelector, useAppDispatch, initAppTC } from "../store";
@@ -32,6 +33,7 @@ export const Routes: FC = () => {
         <Route index element={<div>HOME PAGE</div>} />
 
         <Route path="posts" element={<Posts />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="posts/:postId" element={<Post />} />
 
         <Route element={<ProtectedRoute isAllow={isAuth} pathToRedirect="/" />}>

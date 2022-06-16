@@ -1,6 +1,7 @@
-import type { PostModel } from "../../types";
 import api from "../../services";
+import type { PostModel } from "../../types";
 import type { AppThunk } from "../store";
+import type { GetPostsDTO } from "../../services/api/blog";
 
 export const setPostsAC = (payload: PostModel[]) => {
   return {
@@ -51,24 +52,26 @@ export const togglePostLikeAC = (payload: { id: number; value: boolean }) => {
   } as const;
 };
 
-export const getPostsTC = (): AppThunk => async (dispatch) => {
-  dispatch(setLoadingAC(true));
+export const getPostsTC =
+  (queryString?: GetPostsDTO): AppThunk =>
+  async (dispatch) => {
+    dispatch(setLoadingAC(true));
 
-  try {
-    const response = await api.blog.getPosts();
-    if (response.status === 200) {
-      dispatch(setPostsAC(response.data.results));
+    try {
+      const response = await api.blog.getPosts(queryString);
+      if (response.status === 200) {
+        dispatch(setPostsAC(response.data.results));
+        dispatch(setLoadingAC(false));
+
+        return response;
+      }
+      throw new Error();
+    } catch (e) {
+      console.error(e);
       dispatch(setLoadingAC(false));
-
-      return response;
+      return e;
     }
-    throw new Error();
-  } catch (e) {
-    console.error(e);
-    dispatch(setLoadingAC(false));
-    return e;
-  }
-};
+  };
 
 export const getPostTC =
   (id: number): AppThunk =>

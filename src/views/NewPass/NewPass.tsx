@@ -43,7 +43,7 @@ export const NewPass: FC = () => {
         placeholder="Confirm your password"
       />
 
-      <Button title="Set password" onClick={setPassHandler} />
+      <Button content="Set password" onClick={setPassHandler} />
     </NewPassContainer>
   );
 };

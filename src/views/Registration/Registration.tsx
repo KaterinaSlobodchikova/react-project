@@ -79,7 +79,7 @@ export const Registration: FC = () => {
         placeholder="Confirm password"
       />
 
-      <Button title="Sign Up" onClick={signUpHandler} />
+      <Button content="Sign Up" onClick={signUpHandler} />
       <HaveAccount>
         Already have an account? <Link to="/login">Sign in</Link>
       </HaveAccount>

@@ -6,11 +6,6 @@ export type ActivationDTO = {
   token: string;
 };
 
-type Response = any;
-
 export const activation = (data: ActivationDTO) => {
-  return http.post<ActivationDTO, AxiosResponse<Response>>(
-    "/auth/users/activation/",
-    data
-  );
+  return http.post<ActivationDTO>("/auth/users/activation/", data);
 };

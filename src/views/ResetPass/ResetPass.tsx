@@ -71,7 +71,7 @@ export const ResetPass: FC = () => {
 
       {/* <Button title="Focus" onClick={focusHandler} /> */}
 
-      <Button title="Reset" onClick={resetPassHandler} />
+      <Button content="Reset" onClick={resetPassHandler} />
     </ResetPassContainer>
   );
 };
